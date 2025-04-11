@@ -42,12 +42,12 @@ Experiments are conducted on the following benchmark intrusion detection dataset
 ### To run on DARPA dataset:
 
 ```bash
-demo.sh DARPA
+bash demo.sh DARPA
 ```
 ### To run on ISCX dataset:
 
 ```bash
-demo.sh ISCX
+bash demo.sh ISCX
 ```
 
 ## Environment
