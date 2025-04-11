@@ -38,17 +38,16 @@ Experiments are conducted on the following benchmark intrusion detection dataset
 - Python 3.8+
 - Packages:
   - `pandas`, `matplotlib`, `scikit-learn`, `numpy`
-  - Optionally: `jupyter`, `notebook` for interactive runs
 
-### To run edge-level detection:
+### To run on DARPA dataset:
 
 ```bash
-python scores.py --dataset DARPA
+demo.sh DARPA
 ```
-### To run subgraph-level detection:
+### To run on ISCX dataset:
 
 ```bash
-python scores.py --dataset CIC-IDS2018 --mode subgraph
+demo.sh ISCX
 ```
 
 ## Environment
