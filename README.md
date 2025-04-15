@@ -32,7 +32,7 @@ Experiments are conducted on the following benchmark intrusion detection dataset
 
 ### Requirements
 
-- C++ (if using native sketch)
+- C++ 
 - Python 3.8+
     
 ### Clone the repository and cd into Code/ to run bash commands
