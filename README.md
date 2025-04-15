@@ -26,8 +26,6 @@ Experiments are conducted on the following benchmark intrusion detection dataset
 - [CIC-IDS2018](https://www.unb.ca/cic/datasets/ids-2018.html)
 - [CIC-DDoS2019](https://www.unb.ca/cic/datasets/ddos-2019.html)
 
-> Note: Datasets larger than 100MB (e.g., CIC-* datasets) are not uploaded to GitHub. Please download them from the official links above and place them inside the `data/` directory.
-
 ---
 
 ## Quick Start
@@ -39,16 +37,33 @@ Experiments are conducted on the following benchmark intrusion detection dataset
 - Packages:
   - `pandas`, `matplotlib`, `scikit-learn`, `numpy`
   - Optionally: `jupyter`, `notebook` for interactive runs
-
-### To run edge-level detection:
+    
+### Clone the repository and cd into Code/ to run bash commands
 
 ```bash
-python scores.py --dataset DARPA
+git clone https://github.com/your-username/MultiSnapshot.git
+cd Code/
 ```
-### To run subgraph-level detection:
+
+### To run on DARPA dataset:
 
 ```bash
-python scores.py --dataset CIC-IDS2018 --mode subgraph
+bash demo.sh DARPA
+```
+### To run on ISCX dataset:
+
+```bash
+bash demo.sh ISCX
+```
+### To run on IDS2018 dataset:
+
+```bash
+bash demo.sh IDS2018
+```
+### To run on DDOS2019 dataset:
+
+```bash
+bash demo.sh DDOS2019
 ```
 
 ## Environment
