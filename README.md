@@ -34,9 +34,6 @@ Experiments are conducted on the following benchmark intrusion detection dataset
 
 - C++ (if using native sketch)
 - Python 3.8+
-- Packages:
-  - `pandas`, `matplotlib`, `scikit-learn`, `numpy`
-  - Optionally: `jupyter`, `notebook` for interactive runs
     
 ### Clone the repository and cd into Code/ to run bash commands
 
