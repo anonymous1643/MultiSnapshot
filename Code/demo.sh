@@ -17,14 +17,14 @@ WEIGHTS=""
 
 case "$LOWER" in
     darpa)
-        DECAYS="0.95,0.88,0.90"
-        WEIGHTS="0.625,0.375,0.0"
+        DECAYS="0.70,0.80,0.90"
+        WEIGHTS="0.5,0.3,0.2"
         EDGE_FILE="../data/darpa/darpa-Data.csv"
         LABEL_FILE="../data/darpa/darpa-Label.csv"
         ;;
     iscx)
-        DECAYS="0.95,0.88,0.80"
-        WEIGHTS="0.625,0.375,0.7"
+        DECAYS="0.90,0.95,0.99"
+        WEIGHTS="0.5,0.3,0.2"
         EDGE_FILE="../data/iscx/iscx-Data.csv"
         LABEL_FILE="../data/iscx/iscx-Label.csv"
         ;;
@@ -32,6 +32,8 @@ case "$LOWER" in
         echo "Extracting $DATASET from ZIP via Python..."
         python3 extract_from_zip.py "$LOWER" || { echo "Failed to extract $DATASET"; exit 1; }
 
+        DECAYS="0.90,0.95,0.99"
+        WEIGHTS="0.5,0.3,0.2"
         EDGE_FILE="./tmp_data/${LOWER}_Data.csv"
         LABEL_FILE="./tmp_data/${LOWER}_Label.csv"
         ;;
@@ -44,10 +46,11 @@ esac
 # Compile the code
 echo "Compiling..."
 g++ -O3 -march=native -flto -static-libstdc++ -static-libgcc \
-    CountMedianSketch.cpp RobustCountSketch.cpp main.cpp -o run_cms
+    CountMedianSketch.cpp RobustCountSketch.cpp GraphMedianSketch.cpp main.cpp \
+    -o run_cms
 
 # Run the program
-echo "Running MultipleCMS and BayesOptMultiCMS on: $DATASET"
+echo "Running MultipleCMS, BayesOptMultiCMS, and GraphAnomalyDetector on: $DATASET"
 ./run_cms "$LOWER" "$EDGE_FILE" "$LABEL_FILE" "$ROWS" "$BUCKETS" "$DECAYS" "$WEIGHTS"
 
 # Cleanup
