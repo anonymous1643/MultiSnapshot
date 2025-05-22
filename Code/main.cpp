@@ -1,5 +1,7 @@
 #include "CountMedianSketch.hpp"     // For MultipleCMS
 #include "RobustCountSketch.hpp"     // For BayesOptMultiCMS
+#include "GraphMedianSketch.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -129,7 +131,26 @@ int main(int argc, char* argv[]) {
         std::cout << "Scoring results on: " << dataset_name << std::endl;
         std::system("python3 -W ignore scores.py");
     }
-    
+
+    // === Run GraphAnomalyDetector ===
+    {
+        std::string algorithm = "GraphAnomalyDetector";
+        std::cout << "\n--- Running GraphAnomalyDetector ---\n";
+        auto start_time = std::chrono::high_resolution_clock::now();
+
+        GraphAnomalyDetector detector(
+            algorithm, dataset_name, rows, buckets,
+            decay_factors, weights, src, dst, times, labels
+        );
+        detector.run();
+
+        auto end_time = std::chrono::high_resolution_clock::now();
+        double elapsed = std::chrono::duration<double, std::milli>(end_time - start_time).count();
+        std::cout << "GraphAnomalyDetector execution time: " << elapsed << " ms\n";
+
+        std::cout << "Scoring results on: " << dataset_name << std::endl;
+        std::system("python3 -W ignore scores.py graph_scores_labels.csv");
+    }    
 
     return 0;
 }
